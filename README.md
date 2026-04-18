@@ -1,2 +1,2 @@
 # innoapp
-app
+app for Innovation
