@@ -1,7 +1,884 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; URL=https://payhip.com/b/kXH4L" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovating — The Community for Innovators</title>
+<meta name="description" content="Built for the brilliant minds who are done playing small. We exist to turn breakthrough ideas into world-changing realities — one bold innovator at a time.">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --midnight: #050c18;
+  --deep: #081224;
+  --card: #0c1a30;
+  --card2: #0f2040;
+  --teal: #00e5c3;
+  --teal-dim: #00b89c;
+  --teal-pale: rgba(0,229,195,0.07);
+  --teal-border: rgba(0,229,195,0.18);
+  --coral: #ff6b4a;
+  --white: #ffffff;
+  --off: #dde8f0;
+  --muted: #5e7a96;
+  --dim: #2a3f57;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --display: 'Cabinet Grotesk', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--display);
+  background: var(--midnight);
+  color: var(--off);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* BG TEXTURE */
+.bg-noise {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.bg-aurora {
+  position: fixed; top: -20%; left: -20%; right: -20%; height: 80vh;
+  z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 30% 20%, rgba(0,229,195,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 40% at 80% 10%, rgba(255,107,74,0.04) 0%, transparent 60%);
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(5,12,24,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,229,195,0.08);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo img {height:32px}
+.nav-logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--teal); display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 900; font-size: 1rem; color: var(--midnight);
+}
+.nav-wordmark {
+  font-family: var(--display); font-weight: 800; font-size: 1.1rem;
+  color: var(--white); letter-spacing: -0.02em;
+}
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a {
+  font-size: 0.85rem; color: var(--muted); text-decoration: none;
+  transition: color 0.2s; font-weight: 500;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--teal); color: var(--midnight);
+  font-family: var(--display); font-weight: 700; font-size: 0.82rem;
+  padding: 0.55rem 1.4rem; border-radius: 100px;
+  text-decoration: none; transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-cta:hover { background: #33edd1; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 9rem 2rem 6rem;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--teal);
+  background: var(--teal-pale); border: 1px solid var(--teal-border);
+  padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem;
+  animation: rise 0.7s ease both;
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--teal);
+  animation: blink 2s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+@keyframes rise { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+
+.hero-eyebrow {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--muted); margin-bottom: 1rem;
+  animation: rise 0.7s 0.1s ease both;
+}
+.hero-h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  line-height: 0.95; letter-spacing: -0.035em;
+  color: var(--white); margin-bottom: 1.5rem;
+  animation: rise 0.7s 0.15s ease both;
+}
+.hero-h1b {font-size:244px;}
+.hero-h1 .teal { color: var(--teal); }
+.hero-h1 .italic { font-family: var(--serif); font-weight: 400; font-style: italic; color: var(--off); }
+.hero-desc {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--muted); max-width: 580px;
+  line-height: 1.8; margin-bottom: 3rem;
+  animation: rise 0.7s 0.25s ease both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: rise 0.7s 0.35s ease both;
+}
+.btn-primary {
+  background: var(--teal); color: var(--midnight);
+  font-family: var(--display); font-weight: 700; font-size: 0.95rem;
+  padding: 0.9rem 2.5rem; border-radius: 100px; border: none;
+  cursor: pointer; text-decoration: none; display: inline-block;
+  transition: all 0.2s; box-shadow: 0 0 48px rgba(0,229,195,0.2);
+}
+.btn-primary:hover { background: #33edd1; transform: translateY(-2px); box-shadow: 0 0 72px rgba(0,229,195,0.35); }
+.btn-ghost {
+  background: transparent; color: var(--off);
+  font-family: var(--display); font-weight: 600; font-size: 0.95rem;
+  padding: 0.9rem 2rem; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer; text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+.hero-social-proof {
+  margin-top: 4.5rem; animation: rise 0.7s 0.5s ease both;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+}
+.proof-avatars { display: flex; }
+.proof-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--midnight);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.75rem; margin-left: -10px;
+}
+.proof-av:first-child { margin-left: 0; }
+.av1 { background: #1e6b8c; color: #9fd8ef; }
+.av2 { background: #1e5c3a; color: #7ddfa8; }
+.av3 { background: #6b2d1e; color: #efab9f; }
+.av4 { background: #4a1e6b; color: #c89fef; }
+.av5 { background: #5c511e; color: #efd87d; }
+.proof-text { font-size: 0.85rem; color: var(--muted); }
+.proof-text strong { color: var(--off); }
+
+/* SECTION BASE */
+section.pad { padding: 6rem 2rem; position: relative; z-index: 1; }
+.inner { max-width: 1100px; margin: 0 auto; }
+.sec-tag {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--teal);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 0.9rem;
+}
+.sec-tag::before { content: ''; width: 20px; height: 1px; background: var(--teal); }
+h2.sec-h {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--white); line-height: 1.1; letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+h2.sec-h em { font-family: var(--serif); font-style: italic; color: var(--teal); font-weight: 400; }
+.sec-p { font-size: 1.05rem; color: var(--muted); max-width: 580px; line-height: 1.8; margin-bottom: 3rem; }
+.paddme {padding: 60px 0;}
+.paddme p {padding-bottom: 20px;}
+/* MOVEMENT STRIP */
+.movement { background: var(--deep); border-top: 1px solid rgba(0,229,195,0.06); border-bottom: 1px solid rgba(0,229,195,0.06); }
+.movement-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.movement-quote { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--white); line-height: 1.4; margin-bottom: 1.5rem; }
+.movement-quote span { color: var(--teal); }
+.movement-body p { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.movement-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.mstat { text-align: center; padding: 1.5rem 1rem; background: var(--card); border: 1px solid rgba(0,229,195,0.1); border-radius: 14px; }
+.mstat-n { font-family: var(--display); font-weight: 900; font-size: 2rem; color: var(--white); letter-spacing: -0.03em; line-height: 1; }
+.mstat-l { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+/* FREE VS PRO */
+.plans { background: var(--midnight); }
+.plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+.plan-card {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--card);
+  transition: border-color 0.2s;
+}
+.plan-card:hover { border-color: rgba(0,229,195,0.25); }
+.plan-card.featured {
+  border: 1px solid rgba(0,229,195,0.35);
+  background: linear-gradient(160deg, #0d1e35 0%, #0c1a30 100%);
+  position: relative;
+}
+.plan-card.featured::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+.plan-head { padding: 2.5rem 2.5rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.plan-type { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.plan-type.pro { color: var(--teal); }
+.plan-name { font-family: var(--display); font-weight: 800; font-size: 1.5rem; color: var(--white); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+.plan-tagline { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.plan-price { display: flex; align-items: baseline; gap: 4px; margin-top: 1.25rem; }
+.plan-price .amt { font-family: var(--display); font-weight: 900; font-size: 3rem; color: var(--white); letter-spacing: -0.04em; line-height: 1; }
+.plan-price .cadence { font-size: 0.82rem; color: var(--muted); }
+.plan-body { padding: 2rem 2.5rem; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+.plan-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--off); }
+.feat-check { color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.feat-check.muted-check { color: var(--muted); }
+.plan-btn {
+  display: block; width: 100%; text-align: center;
+  font-family: var(--display); font-weight: 700; font-size: 0.9rem;
+  padding: 0.9rem 1.5rem; border-radius: 100px;
+  text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+}
+.plan-btn.free { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--off); }
+.plan-btn.free:hover { border-color: var(--teal); color: var(--teal); }
+.plan-btn.pro-btn { background: var(--teal); color: var(--midnight); box-shadow: 0 0 36px rgba(0,229,195,0.2); }
+.plan-btn.pro-btn:hover { background: #33edd1; transform: translateY(-1px); }
+.pro-badge {
+  display: inline-block; font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: rgba(0,229,195,0.12); color: var(--teal);
+  border: 1px solid var(--teal-border);
+  padding: 3px 10px; border-radius: 100px; margin-left: 8px; vertical-align: middle;
+}
+
+/* FEATURES GRID */
+.features { background: var(--deep); }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; margin-top: 3rem; }
+.feat-tile {
+  background: var(--midnight); padding: 2.5rem 2rem;
+  transition: background 0.2s;
+}
+.feat-tile:hover { background: var(--card); }
+.feat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--teal-pale); border: 1px solid var(--teal-border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem; font-size: 1.25rem;
+}
+.feat-tile h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+.feat-tile p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+/* MONTHLY THEMES */
+.themes { background: var(--midnight); }
+.themes-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.themes-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+.theme-item { background: var(--card); padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: background 0.2s; }
+.theme-item:hover { background: var(--card2); }
+.theme-num { font-family: var(--mono); font-size: 0.65rem; color: var(--teal); min-width: 28px; margin-top: 2px; }
+.theme-content h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+.theme-content p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.themes-quote { background: var(--card); border: 1px solid var(--teal-border); border-radius: 20px; padding: 3rem; position: sticky; top: 7rem; }
+.tq-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+.tq-text { font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--white); line-height: 1.6; margin-bottom: 2rem; }
+.tq-items { display: flex; flex-direction: column; gap: 0.75rem; }
+.tq-item { display: flex; gap: 0.75rem; font-size: 0.88rem; color: var(--off); }
+.tq-dot { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* DAILY COMMUNITY */
+.daily { background: var(--deep); }
+.daily-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; }
+.daily-card {
+  background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 1.75rem;
+  transition: border-color 0.2s; position: relative; overflow: hidden;
+}
+.daily-card:hover { border-color: rgba(0,229,195,0.25); }
+.daily-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--teal); opacity: 0; transition: opacity 0.2s; }
+.daily-card:hover::before { opacity: 1; }
+.daily-q { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--off); line-height: 1.6; margin-bottom: 0.75rem; }
+.daily-meta { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* PRO EXCLUSIVE */
+.pro-exclusive { background: var(--midnight); }
+.pro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+.pro-tile {
+  background: var(--card); border: 1px solid rgba(0,229,195,0.1);
+  border-radius: 16px; padding: 2rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.pro-tile:hover { border-color: rgba(0,229,195,0.3); transform: translateY(-3px); }
+.pro-tile-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+.pro-tile h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+.pro-tile p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+/* MAGIC ONBOARDING */
+.onboard { background: var(--deep); }
+.onboard-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; position: relative; }
+.onboard-steps::before {
+  content: ''; position: absolute; top: 28px; left: calc(16.66% + 1rem); right: calc(16.66% + 1rem);
+  height: 1px; background: linear-gradient(90deg, var(--teal-border), var(--teal-border));
+}
+.onboard-step { text-align: center; }
+.ostep-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--card2); border: 1px solid var(--teal-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 800; font-size: 1rem;
+  color: var(--teal); margin: 0 auto 1.25rem;
+  position: relative; z-index: 1;
+}
+.onboard-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+.onboard-step p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+/* LAUNCH SECTION */
+.launch { background: var(--midnight); }
+.launch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.launch-badge {
+  background: var(--card); border: 1px solid var(--teal-border); border-radius: 20px;
+  padding: 2.5rem; text-align: center;
+}
+.lb-logo { width: 72px; height: 72px; border-radius: 18px; background: var(--teal); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 900; font-size: 2rem; color: var(--midnight); margin: 0 auto 1.5rem; }
+.lb-name { font-family: var(--display); font-weight: 900; font-size: 2rem; color: var(--white); letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+.lb-tag { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+.lb-text { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.launch-channels { display: flex; flex-direction: column; gap: 1rem; }
+.channel { display: flex; gap: 1rem; align-items: center; background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.25rem; }
+.channel-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--teal-pale); border: 1px solid var(--teal-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+.channel h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+.channel p { font-size: 0.8rem; color: var(--muted); }
+
+/* FINAL CTA */
+.final-cta {
+  position: relative; z-index: 1;
+  padding: 10rem 2rem;
+  text-align: center; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,229,195,0.05) 0%, transparent 65%);
+}
+.final-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,229,195,0.05);
+}
+.fr1 { width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.fr2 { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.fr3 { width: 1000px; height: 1000px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.final-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; position: relative; }
+.final-h { font-family: var(--display); font-weight: 900; font-size: clamp(2.8rem, 6vw, 5.5rem); letter-spacing: -0.035em; color: var(--white); line-height: 1.0; margin-bottom: 1.5rem; position: relative; }
+.final-h em { font-family: var(--serif); font-weight: 400; font-style: italic; color: var(--teal); }
+.final-p { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin: 0 auto 3rem; line-height: 1.8; position: relative; }
+.final-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-big {
+  background: var(--teal); color: var(--midnight);
+  font-family: var(--display); font-weight: 800; font-size: 1rem;
+  padding: 1.1rem 3rem; border-radius: 100px; border: none;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s; box-shadow: 0 0 60px rgba(0,229,195,0.2);
+}
+.btn-big:hover { background: #33edd1; transform: translateY(-2px); box-shadow: 0 0 80px rgba(0,229,195,0.35); }
+.btn-big-ghost {
+  background: transparent; color: var(--off);
+  font-family: var(--display); font-weight: 600; font-size: 1rem;
+  padding: 1.1rem 2.5rem; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15); cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-big-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 1;
+  background: var(--deep); border-top: 1px solid rgba(0,229,195,0.07);
+  padding: 3rem 2.5rem 2rem;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.footer-brand { max-width: 280px; }
+.footer-brand .fb-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+.footer-col h5 { font-size: 0.78rem; font-weight: 700; color: var(--off); margin-bottom: 1rem; letter-spacing: 0.04em; }
+.footer-col a { display: block; font-size: 0.82rem; color: var(--muted); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--dim); font-family: var(--mono); letter-spacing: 0.06em; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .movement-inner, .themes-layout, .launch-grid, .plans-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .feat-grid, .pro-grid { grid-template-columns: 1fr; }
+  .onboard-steps { grid-template-columns: 1fr; }
+  .onboard-steps::before { display: none; }
+  .daily-grid { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
+  .footer-top { flex-direction: column; }
+}
+</style>
 </head>
-<body></body>
+<body>
+
+<div class="bg-noise"></div>
+<div class="bg-aurora"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo"><img src="logo.png" alt="logo"></div>
+    <span class="nav-wordmark">Innovating</span>
+  </div>
+  <div class="nav-links">
+    <a href="#plans">Membership</a>
+    <a href="#features">Features</a>
+    <a href="#pro">Pro Access</a>
+    <a href="#community">Community</a>
+  </div>
+  <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&utm_source=website" class="nav-cta" target="_blank">Join Free</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><div class="live-dot"></div> Now Live — South Florida & Online</div>
+  
+  <h1 class="hero-h1">
+    <span>Join the</span><br>
+    <span class="italic hero-h1b">movement</span><br>
+    <span class="teal">Start building.</span>
+  </h1>
+  <p class="hero-desc">
+    Innovating is the movement-driven community where creatives, engineers, researchers, data scientists, developers
+    and entrepreneurs turn their breakthrough ideas into real-world impact — together.
+  </p>
+  <div class="hero-actions">
+    <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&utm_source=website" target="_blank" class="btn-primary">Join Free Today</a>
+    <a href="https://members.innovating.app/plans/1977177?bundle_token=a2f1f37b9c850bc808b06bb22fe5069e&utm_source=website"  target="_blank" class="btn-ghost">Explore Pro Membership →</a>
+  </div>
+  <div class="hero-social-proof">
+    <div class="proof-avatars">
+      <div class="proof-av av1">MR</div>
+      <div class="proof-av av2">PK</div>
+      <div class="proof-av av3">DS</div>
+      <div class="proof-av av4">SL</div>
+      <div class="proof-av av5">JT</div>
+    </div>
+    <p class="proof-text"><strong>Ambitious STEM professionals</strong> are already inside — engineers, researchers, developers, and founders building the future right now.</p>
+  </div>
+</section>
+
+<section class="movement paddme">
+  <div class="inner">
+    <div>
+      <div class="sec-tag">Next Meeting</div>
+      <div class="movement-quote">Join the movement at the Miami Beach Convention Center</div>
+      <div>
+        <p><b>April 29, 2026 at 11am</b></p>
+        <p class="sec-h">You are invited to our upcoming meeting.  Meet fellow innovators and members right here in South Florida.  Be surrounded by people who inspire and excite you.  Network with brilliant minds that are already building or looking to start <span>their own innovation</span>.</p>
+      <p>Innovating is meeting inside the Business Show Miami at the Miami Beach Convention Center, and you can get your free tickets by clicking the button below.</p>
+      <a class="btn-primary" href="https://www.eventbrite.com/e/join-the-innovator-movement-tickets-1987756790068?aff=website" target="_blank">RSVP TODAY</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVEMENT
+<section class="movement">
+  <div class="movement-inner">
+    <div>
+      <div class="sec-tag">Our purpose</div>
+      <div class="movement-quote">"We exist to prove that <span>anyone</span> can innovate, build a breakthrough idea, and bring it to life."</div>
+      <div class="movement-stats">
+        <div class="mstat"><div class="mstat-n">Free</div><div class="mstat-l">To join</div></div>
+        <div class="mstat"><div class="mstat-n">$47</div><div class="mstat-l">Pro / month</div></div>
+        <div class="mstat"><div class="mstat-n">∞</div><div class="mstat-l">Impact possible</div></div>
+      </div>
+    </div>
+    <div class="movement-body">
+      <p>You are technically brilliant. You see problems others overlook and solutions others can't imagine. But seeing the opportunity has never been the problem.</p>
+      <p>The problem is being surrounded by people who don't get it. The problem is not knowing the roadmap. The problem is feeling completely alone in a journey that was never meant to be walked alone.</p>
+      <p>Innovating was built to fix all three. It is a movement, a momentum generator, and the most powerful community a STEM professional can join — to stop dreaming and start building the legacy they were always meant to leave.</p>
+    </div>
+  </div>
+</section>-->
+
+<!-- FREE VS PRO PLANS -->
+<section class="pad plans" id="plans">
+  <div class="inner">
+    <div class="sec-tag">Membership</div>
+    <h2 class="sec-h">Start free. <em>Go Pro</em> when you're ready.</h2>
+    <p class="sec-h">Every ambitious innovator gets access from day one. Whether you are an entrepreneur, a creative, an engineer, researcher, data scientist, developer or any other STEM professional, this community is for you.  Upgrade to Pro for the full arsenal — accountability groups, masterminds, courses, coaching, exclusive events, and an unfair competitive advantage.</p>
+    <div class="plans-grid">
+
+      <!-- FREE -->
+      <div class="plan-card">
+        <div class="plan-head">
+          <div class="plan-type"><b>Free Membership</b></div>
+          <div class="plan-name">Innovator</div>
+          <div class="plan-tagline">Get in the room. Find your people. Start building momentum.</div>
+          <div class="plan-price"><span class="amt">$0</span><span class="cadence">&nbsp;/ forever free</span></div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Post and engage in community discussions</li>
+            <li><span class="feat-check">✓</span> Daily polls, questions, or community prompts</li>
+            <li><span class="feat-check">✓</span> Access live and online events</li>
+            <li><span class="feat-check">✓</span> Empowering digital courses available</li>
+            <li><span class="feat-check">✓</span> Browse the Innovating resources library</li>
+            <li><span class="feat-check">✓</span> Innovating merch store access</li>
+            <li><span class="feat-check">✓</span> STEM scholarship information</li>
+          </ul>
+          <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&utm_source=website" target="_blank" class="plan-btn free">Join Free — No Credit Card</a>
+        </div>
+      </div>
+
+      <!-- PRO -->
+      <div class="plan-card featured" id="pro">
+        <div class="plan-head">
+          <div class="plan-type pro">Pro Innovator <span class="pro-badge">Most Popular</span></div>
+          <div class="plan-name">Pro Innovator</div>
+          <div class="plan-tagline">The unfair advantage for STEM professionals who are serious about impact.</div>
+          <div class="plan-price"><span class="amt">$47</span><span class="cadence">&nbsp;/ month</span></div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Everything in Free, plus:</li>
+            <li><span class="feat-check">✓</span> Full access to Breakthrough Innovation Method digital course</li>
+            <li><span class="feat-check">✓</span> Full access to Workplace Innovation Accelerator</li>
+            <li><span class="feat-check">✓</span> Able to sign up for Accountability Group</li>
+            <li><span class="feat-check">✓</span> Able to sign up for Entrepreneur Mastermind</li>
+            <li><span class="feat-check">✓</span> Able to sign up for Online Coworking sessions with fellow Pro members</li>
+            <li><span class="feat-check">✓</span> Invite to Annual Miami retreat — 3-day exclusive Pro member event</li>
+            <li><span class="feat-check">✓</span> Invitation-only experiences and early access</li>
+          </ul>
+          <a href="https://members.innovating.app/plans/1977177?bundle_token=a2f1f37b9c850bc808b06bb22fe5069e&utm_source=website"  target="_blank"  class="plan-btn pro-btn">Go Pro — $47 / Month</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="pad features" id="features">
+  <div class="inner">
+    <div class="sec-tag">Platform features</div>
+    <h2 class="sec-h">Everything an innovator <em>actually needs</em></h2>
+    <p class="sec-p">Built specifically for engineers, researchers, data scientists, and developers — every feature on Innovating was designed to move your ideas forward.</p>
+    <div class="feat-grid">
+      <div class="feat-tile">
+        <div class="feat-icon">💬</div>
+        <h3>Community discussions</h3>
+        <p>Post questions, share wins, ask for feedback, and connect with peers who speak your language and understand your journey.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🎓</div>
+        <h3>Digital courses</h3>
+        <p>Structured learning paths for innovators at every stage — from Breakthrough Innovation Method to Workplace Innovation Accelerator.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🎯</div>
+        <h3>Coaching programs</h3>
+        <p>1-on-1 and group coaching frameworks designed to take you from stuck and unclear to moving with purpose and momentum.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🗓️</div>
+        <h3>Live & online events</h3>
+        <p>Regular events on Meetup and Eventbrite — both virtual and in-person in South Florida — to connect, learn, and build together.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🤝</div>
+        <h3>Team-building hub</h3>
+        <p>Find collaborators, technical co-founders, and talent with complementary skills. Build the team your idea deserves.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🎙️</div>
+        <h3>Podcast club</h3>
+        <p>Join recorded conversations with fellow innovators on the hottest topics in innovation, technology, and entrepreneurship.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🏆</div>
+        <h3>Accountability groups</h3>
+        <p>Weekly check-ins and hot seat sessions where innovators hold each other to commitments and break through roadblocks together.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🛠️</div>
+        <h3>Open source projects</h3>
+        <p>Collaborate with other pro members to build real things together — end each month with something shipped and a high-five earned.</p>
+      </div>
+      <div class="feat-tile">
+        <div class="feat-icon">🎓</div>
+        <h3>STEM scholarships</h3>
+        <p>We invest in the next generation of innovators through scholarships and resources for STEM students and early-career professionals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONTHLY THEMES -->
+<section class="pad themes" id="community">
+  <div class="inner">
+    <div class="sec-tag">Community programming</div>
+    <h2 class="sec-h">Think big and <em>reach your goals.</em></h2>
+    <div class="themes-layout">
+      <div>
+        <div style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;">For career professionals</div>
+        <div class="themes-list">
+          <div class="theme-item">
+            <div class="theme-num">01</div>
+            <div class="theme-content">
+              <h4>Innovation confidence</h4>
+              <p>Build the confidence to bring your ideas to the table, speak up in meetings, and be recognized for your thinking.</p>
+            </div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-num">02</div>
+            <div class="theme-content">
+              <h4>Leadership & influence</h4>
+              <p>Learn to lead without a title, influence decisions, and build a reputation as the go-to innovator in your organization.</p>
+            </div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-num">03</div>
+            <div class="theme-content">
+              <h4>Salary & promotion strategy</h4>
+              <p>Negotiate with confidence. Position your innovations as business outcomes. Get the raise and recognition you've earned.</p>
+            </div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-num">04</div>
+            <div class="theme-content">
+              <h4>Professional development</h4>
+              <p>Teamwork, communication, and the human skills that take technically brilliant professionals to the next level.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div style="vertical-align: text-top;">
+
+                  <div style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin:0rem 0 1rem;">For entrepreneurs & founders</div>
+        <div class="themes-list">
+          <div class="theme-item">
+            <div class="theme-num">05</div>
+            <div class="theme-content">
+              <h4>Vision clarity & market definition</h4>
+              <p>Narrow your target market, define use cases, and build a crystal-clear vision for your innovative product.</p>
+            </div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-num">06</div>
+            <div class="theme-content">
+              <h4>MVP & fail-fast methodology</h4>
+              <p>Refine features into phases, build a quick MVP, and learn to fail fast, learn often, and iterate with speed.</p>
+            </div>
+          </div>
+          <div class="theme-item">
+            <div class="theme-num">07</div>
+            <div class="theme-content">
+              <h4>Team building & roadblock navigation</h4>
+              <p>Find direction, build your team, and have the community help you navigate every obstacle that tries to stop you.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--<div>
+        <div class="themes-quote">
+          <div class="tq-label">// Weekly calendar</div>
+          <div class="tq-text">"Every week is structured to inspire, connect, and keep you moving."</div>
+          <div class="tq-items">
+            <div class="tq-item"><span class="tq-dot">▸</span> Live online accountability meetings</div>
+            <div class="tq-item"><span class="tq-dot">▸</span> Most popular discussion topic deep-dives</div>
+            <div class="tq-item"><span class="tq-dot">▸</span> Most popular project idea spotlights</div>
+            <div class="tq-item"><span class="tq-dot">▸</span> Innovator success stories and inspiration sessions</div>
+            <div class="tq-item"><span class="tq-dot">▸</span> Collaborative build sessions with fellow members</div>
+            <div class="tq-item"><span class="tq-dot">▸</span> Podcast Club recordings — published live</div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</section>
+
+<!-- DAILY COMMUNITY
+<section class="pad daily">
+  <div class="inner">
+    <div class="sec-tag">Daily engagement</div>
+    <h2 class="sec-h">Questions that <em>spark everything</em></h2>
+    <p class="sec-p">Every day the community comes alive with prompts designed to get STEM minds thinking, sharing, and connecting on the things that matter most.</p>
+    <div class="daily-grid">
+      <div class="daily-card">
+        <div class="daily-q">"What frustrating process did you experience this week that could be simplified by innovation?"</div>
+        <div class="daily-meta">Daily prompt · Innovation spotting</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-q">"What cool new innovation did you learn about or interact with today?"</div>
+        <div class="daily-meta">Daily prompt · Inspiration</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-q">"What are your biggest painpoints, your biggest challenge, and your proudest win this week?"</div>
+        <div class="daily-meta">Weekly check-in · Accountability</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-q">"What are you willing to give — and what are you asking for from this community?"</div>
+        <div class="daily-meta">Community prompt · Collaboration</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-q">"What innovation is big in the city where you live right now?"</div>
+        <div class="daily-meta">Daily prompt · Local innovation</div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-q">"What one thing makes you feel the most alive — and are you doing enough of it?"</div>
+        <div class="daily-meta">Weekly reflection · Purpose</div>
+      </div>
+    </div>
+  </div>
+</section>-->
+
+<!-- PRO EXCLUSIVE -->
+<section class="pad pro-exclusive">
+  <div class="inner">
+    <div class="sec-tag">Pro Innovator exclusives</div>
+    <h2 class="sec-h">The experiences only <em>Pro members</em> get</h2>
+    <p class="sec-p">Go Pro and unlock a layer of access, connection, and opportunity that simply doesn't exist anywhere else for STEM professionals.</p>
+    <div class="pro-grid">
+      <div class="pro-tile">
+        <div class="pro-tile-icon">🌴</div>
+        <h3>Annual Miami retreat</h3>
+        <p>Invitation to three days of exclusive ideation, deep connection, and bold collaboration with fellow Pro Innovators in Miami. An experience that changes everything.</p>
+      </div>
+      <div class="pro-tile">
+        <div class="pro-tile-icon">💻</div>
+        <h3>Online coworking sessions</h3>
+        <p>Sign up to work alongside fellow Pro members in focused virtual coworking sessions. Accountability, energy, &amp; building momentum alongside people who get it.</p>
+      </div>
+      <div class="pro-tile">
+        <div class="pro-tile-icon">🎙️</div>
+        <h3>Podcast recording invitations</h3>
+        <p>Be invited to join recorded conversations on the hottest topics in innovation and technology — and get published as part of the Innovating podcast.</p>
+      </div>
+      <div class="pro-tile">
+        <div class="pro-tile-icon">🧠</div>
+        <h3>Entrepreneur mastermind</h3>
+        <p>Enroll in a dedicated group for founding-minded Pro members. Share your venture's progress, get sharp feedback, and navigate the entrepreneurial journey together.</p>
+      </div>
+      <div class="pro-tile">
+        <div class="pro-tile-icon">⚙️</div>
+        <h3>Open source builds</h3>
+        <p>Collaborate on real open-source projects with fellow Pro members each month. Ship something real. High-five your team. Build your portfolio and reputation.</p>
+      </div>
+      <div class="pro-tile">
+        <div class="pro-tile-icon">🎓</div>
+        <h3>Included course library</h3>
+        <p>Breakthrough Innovation Method and Workplace Innovation Accelerator — all included in your Pro membership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LAUNCH / WHERE TO FIND US 
+<section class="pad launch">
+  <div class="inner">
+    <div class="sec-tag">Find us everywhere</div>
+    <h2 class="sec-h">One community. <em>Many ways in.</em></h2>
+    <p class="sec-p">Innovating is active across the platforms where STEM professionals already live — so wherever you are, we're there too.</p>
+    <div class="launch-grid">
+      <div class="launch-badge">
+        <div class="lb-logo">I</div>
+        <div class="lb-name">Innovating</div>
+        <div class="lb-tag">// The Movement</div>
+        <div class="lb-text">A community, a platform, a movement — built for every engineer, researcher, data scientist, and developer who knows they were meant to build something that matters. South Florida based. Global in reach. Unstoppable in mission.</div>
+      </div>
+      <div class="launch-channels">
+        <div class="channel">
+          <div class="channel-icon">💼</div>
+          <div><h4>LinkedIn</h4><p>Follow for innovation tips, member spotlights, and community updates for career professionals.</p></div>
+        </div>
+        <div class="channel">
+          <div class="channel-icon">𝕏</div>
+          <div><h4>Twitter / X</h4><p>Real-time innovation conversations, hot takes, and quick-fire community engagement.</p></div>
+        </div>
+        <div class="channel">
+          <div class="channel-icon">📅</div>
+          <div><h4>Meetup & Eventbrite</h4><p>All live events listed and open to join. In-person South Florida and virtual worldwide.</p></div>
+        </div>
+        <div class="channel">
+          <div class="channel-icon">⚡</div>
+          <div><h4>Mighty Networks</h4><p>The home base. The full community, courses, events, and everything Pro — all in one place.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="fr1 final-ring"></div>
+  <div class="fr2 final-ring"></div>
+  <div class="fr3 final-ring"></div>
+  <div class="final-label">// Your moment is now</div>
+  <h2 class="final-h">
+    The next great<br>
+    innovation belongs<br>
+    to someone who<br>
+    took the <em>first step.</em>
+  </h2>
+  <p class="final-p">
+    That step is here. That step is now. Your people are already inside — waiting for exactly the kind of brilliant, ambitious, unstoppable innovator that you are.
+  </p>
+  <div class="final-btns">
+    <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&" target="_blank" class="btn-big">Join Innovating Free</a>
+    <a href="https://members.innovating.app/plans/1977177?bundle_token=a2f1f37b9c850bc808b06bb22fe5069e&utm_source=website"  target="_blank"  class="btn-big-ghost">Explore Pro Membership</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-logo">
+          <div class="nav-logo"><img src="logo.png" alt="logo"></div>
+          <span class="nav-wordmark" style="margin-left:10px;">Innovating</span>
+        </div>
+        <p>Built for the brilliant minds who are done playing small. We exist to turn breakthrough ideas into world-changing realities — one bold innovator at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Community</h5>
+        <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&" target="_blank">Discussions</a>
+        <a href="https://www.eventbrite.com/o/innovating-app-88347089713" target="_blank">Events</a>
+        <a href="https://my.cheddarup.com/c/innovating-stem-scholarships/fundraiser/shop" target="_blank">STEM Scholarships</a>
+        <!--<a href="#">Podcast</a>
+        <a href="#">Member Directory</a>
+        <a href="#">Open Source Projects</a>-->
+      </div>
+<!--      <div class="footer-col">
+        <h5>Learning</h5>
+        <a href="#">Digital Courses</a>
+        <a href="#">Coaching Programs</a>
+        <a href="#">Innovation Coach Certification</a>
+        <a href="#">STEM Scholarships</a>
+        <a href="#">Resource Library</a>
+      </div>
+      -->
+      <div class="footer-col">
+        <h5>Membership</h5>
+        <a href="https://members.innovating.app/plans/1977178?bundle_token=79f6a6a321f7795d0c4d9f6841127c53&" target="_blank">Free Membership</a>
+        <a href="https://members.innovating.app/plans/1977177?bundle_token=a2f1f37b9c850bc808b06bb22fe5069e&utm_source=website"  target="_blank">Pro Innovator — $47/mo</a>
+        <a href="https://members.innovating.app/plans/1977177?bundle_token=a2f1f37b9c850bc808b06bb22fe5069e&utm_source=website"  target="_blank">Annual Miami Retreat</a>
+        <a href="https://innovating-app.printful.me/" target="_blank">Merch Store</a>
+        <!--<a href="#">About Innovating</a>-->
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Enrich & Impact LLC — All Rights Reserved</span>
+      <span>Built for the ones who build the future.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
